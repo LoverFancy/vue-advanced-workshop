@@ -5,19 +5,37 @@
 </div>
 
 <script>
-Vue.component('example', {
-  functional: true,
-  props: {
-    tags: {
-      type: Array,
-      validator (arr) { return !!arr.length }
+  Vue.component('example', {
+    // 第二版实现：使用函数式组件
+    functional: true,
+    props: {
+      tags: {
+        type: Array,
+        validator (arr) { return !!arr.length }
+      }
+    },
+    render: (h, context) => {
+      const tags = context.props.tags
+      return h('div', context.data, tags.map((tag, index) => h(tag, index)))
     }
-  },
-  render: (h, context) => {
-    const tags = context.props.tags
-    return h('div', context.data, tags.map((tag, index) => h(tag, index)))
-  }
-})
 
-new Vue({ el: '#app' })
+    // 第一版简单实现：使用example普通组件
+    // props: ['tags'],
+    // ES6中函数的简写方式可以帮助this的访问，在下面函数中通过this访问属性
+    // render(h) {
+    //   // const children = this.tags.map((tag, index) => h(tag, index))
+    //   // return h('div', children)
+    //   return h('div', this.tags.map((tag, index) => h(tag, index)))
+    // },
+
+
+    // 这里不使用箭头有函数的形式是为了能在render函数中访问this(Vue实例)，下面的写法会报错map of undefined
+    // render: h => h('div', this.tags.map((tag, index) => h(tag, index)))
+    // 这里的this指向的是Window对象
+    // render: h => {window.console.log(this); return h('div', 'text')}
+  })
+
+  new Vue({
+    el: '#app'
+  })
 </script>
