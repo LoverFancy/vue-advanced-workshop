@@ -1,7 +1,9 @@
 <script src="../node_modules/vue/dist/vue.js"></script>
 
 <div id="app">
-  <example :tags="['h1', 'h2', 'h3']"></example>
+  <example :tags="['h1', 'h2', 'h3']">
+    <div>slot</div>
+  </example>
 </div>
 
 <script>
@@ -15,6 +17,8 @@
       }
     },
     render: (h, context) => {
+      // context.slots() // same as this.$slot
+      // context.parent
       const tags = context.props.tags
       return h('div', context.data, tags.map((tag, index) => h(tag, index)))
     }
