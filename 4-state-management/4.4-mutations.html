@@ -18,6 +18,7 @@ function createStore ({ state, mutations }) {
         if (!mutations.hasOwnProperty(mutation)) {
           throw new Error('Unknown mutation')
         }
+        window.console.log(state)
         mutations[mutation](state)
       }
     }

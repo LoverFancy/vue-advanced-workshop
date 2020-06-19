@@ -1,0 +1,26 @@
+<script src="../node_modules/vue/dist/vue.js"></script>
+
+<div id="app"></div>
+
+<script>
+const state = {
+  count: 0
+}
+// 核心reducer
+const reducer = (prevState, action) => {
+  switch (action) {
+    case 'inc':
+      return {count: prevState.count + 1}
+      break;
+    case 'dec':
+      return {count: prevState.count - 1}
+      break;
+    default:
+      return prevState
+      break;
+  }
+}
+function app({el, model, view, actions}) {
+
+}
+</script>
