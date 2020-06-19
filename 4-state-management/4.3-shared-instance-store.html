@@ -22,7 +22,17 @@ const state = new Vue({
 })
 
 const Counter = {
-  render: h => h('div', state.count)
+  render: h =>  h('div', state.count)
+  // render: h => {
+  //   // 指向Window
+  //   window.console.log(this)
+  //   return h('div', state.count)
+  // }
+  // render(h) {
+  //  //指向Vue实例
+  //   window.console.log(this)
+  //   return h('div', state.count)
+  // }
 }
 
 new Vue({
