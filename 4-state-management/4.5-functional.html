@@ -8,6 +8,10 @@ function app ({ el, model, view, actions }) {
 
   Object.keys(actions).forEach(key => {
     const originalAction = actions[key]
+    // wrappedActions[key] = () => {
+    //   const nextModel = originalAction(vm.model)
+    //   vm.model = nextModel
+    // }
     wrappedActions[key] = () => {
       vm.model = originalAction(vm.model)
     }
